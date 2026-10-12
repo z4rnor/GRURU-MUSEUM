@@ -1,0 +1,2192 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GRURU MUSEUM — Executive Presentation Deck</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Brand Color Tokens from Project Brief */
+      --gr-void: #0B0B0F;
+      --gr-graphite: #17171F;
+      --gr-grid: #2C2C3A;
+      --gr-fog: #8A8A9E;
+      --gr-paper: #F2EDE3;
+      --gr-lime: #D7FF3A;
+      --gr-ember: #FF5A1F;
+      --gr-violet: #8C6BFF;
+      --gr-cyan: #2EE6FF;
+      --gr-amber: #FFC233;
+      --gr-green: #34E89E;
+      --gr-coral: #FF5FA2;
+      --gr-alert: #FF3B4E;
+      --gr-timewarp: linear-gradient(135deg, #FF5A1F, #8C6BFF);
+      --font-display: 'Chakra Petch', sans-serif;
+      --font-body: 'IBM Plex Sans Thai', sans-serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+      --hud-cut: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px);
+      --hud-cut-sm: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--gr-void);
+      color: var(--gr-paper);
+      font-family: var(--font-body);
+      line-height: 1.7;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      user-select: none;
+    }
+
+    /* Specimen Grid Background Pattern (48px grid with + markers) */
+    .bg-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      background-image: 
+        linear-gradient(to right, rgba(44, 44, 58, 0.4) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(44, 44, 58, 0.4) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    .bg-scanline {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+      background-size: 100% 4px;
+      opacity: 0.35;
+    }
+
+    /* HUD Corner Coordinate Markers */
+    .hud-coord {
+      position: fixed;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--gr-fog);
+      letter-spacing: 1.5px;
+      z-index: 50;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+    .hud-coord.tl { top: 12px; left: 16px; }
+    .hud-coord.tr { top: 12px; right: 16px; }
+    .hud-coord.bl { bottom: 12px; left: 16px; }
+    .hud-coord.br { bottom: 12px; right: 16px; }
+
+    /* Top Presentation Bar */
+    header.exec-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: rgba(11, 11, 15, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gr-grid);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      z-index: 100;
+    }
+
+    .brand-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-glyph {
+      width: 32px;
+      height: 32px;
+      background: var(--gr-graphite);
+      border: 1px solid var(--gr-lime);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      clip-path: var(--hud-cut-sm);
+      box-shadow: 0 0 14px rgba(215, 255, 58, 0.25);
+    }
+    .brand-glyph svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: var(--gr-lime);
+      stroke-width: 2;
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--gr-paper);
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .brand-title span.badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      background: rgba(215, 255, 58, 0.15);
+      color: var(--gr-lime);
+      border: 1px solid var(--gr-lime);
+      padding: 1px 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .slide-progress-container {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .phase-breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--gr-fog);
+    }
+    .phase-tag {
+      padding: 3px 8px;
+      background: rgba(23, 23, 31, 0.6);
+      border: 1px solid var(--gr-grid);
+      transition: all 0.3s;
+    }
+    .phase-tag.active {
+      background: rgba(215, 255, 58, 0.15);
+      border-color: var(--gr-lime);
+      color: var(--gr-lime);
+      font-weight: 600;
+      box-shadow: 0 0 10px rgba(215, 255, 58, 0.2);
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-hud {
+      background: var(--gr-graphite);
+      color: var(--gr-paper);
+      border: 1px solid var(--gr-grid);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 6px 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      clip-path: var(--hud-cut-sm);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-hud:hover {
+      border-color: var(--gr-lime);
+      color: var(--gr-lime);
+      transform: translateY(-1px);
+      box-shadow: 3px 3px 0 var(--gr-ember);
+    }
+    .btn-hud.primary {
+      background: var(--gr-lime);
+      color: #000;
+      border-color: var(--gr-lime);
+      font-weight: 700;
+    }
+    .btn-hud.primary:hover {
+      background: #e4ff6b;
+      color: #000;
+      box-shadow: 4px 4px 0 var(--gr-ember);
+    }
+
+    /* Deck Master Stage */
+    main.deck-stage {
+      position: relative;
+      width: 100vw;
+      height: calc(100vh - 60px);
+      margin-top: 60px;
+      z-index: 10;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 36px 64px;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.98) translateY(12px);
+      transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                  visibility 0.45s;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      overflow-y: auto;
+    }
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1) translateY(0);
+      z-index: 5;
+    }
+
+    /* Slide Header & Specimen Label */
+    .slide-specimen-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 1px solid var(--gr-grid);
+      padding-bottom: 12px;
+      margin-bottom: 24px;
+    }
+
+    .specimen-tag {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--gr-fog);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .specimen-tag .code {
+      color: var(--gr-lime);
+      background: rgba(215, 255, 58, 0.1);
+      border: 1px solid rgba(215, 255, 58, 0.3);
+      padding: 2px 8px;
+    }
+    .specimen-tag .hall {
+      color: var(--gr-cyan);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .slide-title-wrap h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.8vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--gr-paper);
+      margin-top: 4px;
+    }
+    .slide-title-wrap h1 span.gradient-text {
+      background: var(--gr-timewarp);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .slide-subtitle {
+      font-size: 17px;
+      color: var(--gr-fog);
+      margin-top: 4px;
+    }
+
+    /* Layout Grids */
+    .exec-grid-2 {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 32px;
+      align-items: center;
+      height: calc(100% - 110px);
+    }
+    .exec-grid-equal {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      height: calc(100% - 110px);
+    }
+    .exec-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 12px;
+    }
+
+    /* HUD Cut Cards */
+    .hud-card {
+      background: var(--gr-graphite);
+      border: 1px solid var(--gr-grid);
+      clip-path: var(--hud-cut);
+      padding: 24px;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .hud-card:hover {
+      border-color: rgba(215, 255, 58, 0.6);
+      box-shadow: 0 0 20px rgba(215, 255, 58, 0.12);
+    }
+    .hud-card.accent-lime {
+      border-left: 3px solid var(--gr-lime);
+    }
+    .hud-card.accent-ember {
+      border-left: 3px solid var(--gr-ember);
+    }
+    .hud-card.accent-cyan {
+      border-left: 3px solid var(--gr-cyan);
+    }
+    .hud-card.accent-violet {
+      border-left: 3px solid var(--gr-violet);
+    }
+
+    .card-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--gr-fog);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--gr-paper);
+      margin-bottom: 10px;
+    }
+    .card-desc {
+      font-size: 15px;
+      color: #BFBFCF;
+      line-height: 1.6;
+    }
+
+    /* 3-Second Executive Highlight Box */
+    .fast-takeaway {
+      background: rgba(215, 255, 58, 0.07);
+      border: 1px dashed var(--gr-lime);
+      padding: 12px 18px;
+      margin-top: 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .fast-takeaway .icon-pill {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: #000;
+      background: var(--gr-lime);
+      padding: 2px 6px;
+      white-space: nowrap;
+    }
+    .fast-takeaway .text {
+      font-size: 14px;
+      color: var(--gr-paper);
+      font-weight: 500;
+    }
+
+    /* Executive Image Frame */
+    .exec-image-frame {
+      position: relative;
+      background: #000;
+      border: 1px solid var(--gr-grid);
+      clip-path: var(--hud-cut);
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      min-height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .exec-image-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: contrast(1.05) saturate(1.1);
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .exec-image-frame:hover img {
+      transform: scale(1.03);
+    }
+    .exec-image-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(11,11,15,0.95), transparent 80%);
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    /* Interactive Data Booming Engine */
+    .booming-workspace {
+      position: relative;
+      width: 100%;
+      height: 480px;
+      background: #0e0e14;
+      border: 1px solid var(--gr-grid);
+      clip-path: var(--hud-cut);
+      overflow: hidden;
+    }
+    #booming-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      cursor: crosshair;
+    }
+    .booming-hud-overlay {
+      position: absolute;
+      top: 16px;
+      left: 20px;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .booming-counter {
+      font-family: var(--font-mono);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--gr-lime);
+      text-shadow: 0 0 16px rgba(215, 255, 58, 0.5);
+    }
+
+    /* Knowledge Graph Explorer Panel */
+    .kg-explorer-container {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 20px;
+      height: 500px;
+    }
+    .kg-canvas-wrap {
+      position: relative;
+      background: #0D0D13;
+      border: 1px solid var(--gr-grid);
+      clip-path: var(--hud-cut);
+      overflow: hidden;
+    }
+    #kg-canvas {
+      width: 100%;
+      height: 100%;
+      cursor: grab;
+    }
+    .kg-sidebar {
+      background: var(--gr-graphite);
+      border: 1px solid var(--gr-grid);
+      clip-path: var(--hud-cut);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-y: auto;
+    }
+
+    /* Category badges */
+    .cat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      border: 1px solid currentColor;
+      clip-path: var(--hud-cut-sm);
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    /* Perceptual Map Canvas */
+    .perceptual-wrap {
+      position: relative;
+      width: 100%;
+      height: 420px;
+      background: #0E0E15;
+      border: 1px solid var(--gr-grid);
+      clip-path: var(--hud-cut);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Executive Presenter Drawer */
+    #notes-drawer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 220px;
+      background: rgba(17, 17, 25, 0.96);
+      backdrop-filter: blur(16px);
+      border-top: 2px solid var(--gr-lime);
+      box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.7);
+      padding: 20px 36px;
+      z-index: 200;
+      transform: translateY(100%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      display: grid;
+      grid-template-columns: 240px 1fr 200px;
+      gap: 28px;
+    }
+    #notes-drawer.open {
+      transform: translateY(0);
+    }
+
+    /* Overview Modal */
+    #overview-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(11, 11, 15, 0.94);
+      backdrop-filter: blur(14px);
+      z-index: 300;
+      display: none;
+      padding: 60px 40px;
+      overflow-y: auto;
+    }
+    #overview-modal.open {
+      display: block;
+    }
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .overview-card {
+      background: var(--gr-graphite);
+      border: 1px solid var(--gr-grid);
+      padding: 18px;
+      clip-path: var(--hud-cut-sm);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .overview-card:hover, .overview-card.active {
+      border-color: var(--gr-lime);
+      box-shadow: 0 0 16px rgba(215, 255, 58, 0.25);
+      transform: translateY(-2px);
+    }
+
+    /* Keyframe animations */
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 12px rgba(215, 255, 58, 0.2); }
+      50% { box-shadow: 0 0 28px rgba(215, 255, 58, 0.5); }
+    }
+    .pulse-glow {
+      animation: pulseGlow 2.5s infinite;
+    }
+
+    /* Progress indicator bar at bottom */
+    .bottom-progress {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      background: var(--gr-lime);
+      z-index: 150;
+      transition: width 0.3s;
+      box-shadow: 0 0 10px var(--gr-lime);
+    }
+  </style>
+</head>
+<body>
+  <!-- HUD Background Grid & Scanline -->
+  <div class="bg-grid"></div>
+  <div class="bg-scanline"></div>
+
+  <!-- HUD Coordinates -->
+  <div class="hud-coord tl">[SYS.INIT: 2026.10] // ARCHAEOLOGY_LAB</div>
+  <div class="hud-coord tr">LAT: 13.7563° N // LON: 100.5018° E</div>
+  <div class="hud-coord bl">GRURU-OS v2.4 // EXEC_DECK</div>
+  <div class="hud-coord br">NODE_CONNECTIVITY: 100% SECURE</div>
+
+  <!-- Executive Top Navigation Bar -->
+  <header class="exec-nav">
+    <div class="brand-logo-wrap">
+      <div class="brand-glyph">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+      <div class="brand-title">
+        GRURU MUSEUM
+        <span class="badge">EXEC PITCH</span>
+      </div>
+    </div>
+
+    <!-- 5 Pipeline Stage Breadcrumbs -->
+    <div class="phase-breadcrumbs">
+      <div class="phase-tag" id="tag-excavate">01 EXCAVATE</div>
+      <span>&rarr;</span>
+      <div class="phase-tag" id="tag-decode">02 DECODE</div>
+      <span>&rarr;</span>
+      <div class="phase-tag" id="tag-retell">03 RETELL</div>
+      <span>&rarr;</span>
+      <div class="phase-tag" id="tag-connect">04 CONNECT</div>
+      <span>&rarr;</span>
+      <div class="phase-tag" id="tag-apply">05 APPLY</div>
+    </div>
+
+    <!-- Presentation Controls -->
+    <div class="nav-controls">
+      <button class="btn-hud" id="btn-audio" title="สลับเสียงเอฟเฟกต์">
+        <span id="audio-icon">&#128266;</span> SFX: ON
+      </button>
+      <button class="btn-hud" id="btn-notes" title="เปิดบันทึกผู้บรรยาย (กด P)">
+        &#128221; NOTES
+      </button>
+      <button class="btn-hud" id="btn-overview" title="ดูภาพรวมสไลด์ทั้งหมด (กด O)">
+        &#9638; INDEX
+      </button>
+      <button class="btn-hud" id="btn-prev" title="ก่อนหน้า (&larr;)">
+        &larr;
+      </button>
+      <span style="font-family: var(--font-mono); font-size: 13px; color: var(--gr-lime); min-width: 48px; text-align: center;" id="slide-num">01 / 09</span>
+      <button class="btn-hud primary" id="btn-next" title="ถัดไป (&rarr;)">
+        NEXT &rarr;
+      </button>
+      <button class="btn-hud" id="btn-fullscreen" title="เต็มจอ (กด F)">
+        &#x26F6;
+      </button>
+    </div>
+  </header>
+
+  <!-- Deck Master Stage -->
+  <main class="deck-stage">
+
+    <!-- ==========================================
+         SLIDE 01: TITLE & STRATEGIC VISION
+         ========================================== -->
+    <section class="slide active" id="slide-1" data-step="0">
+      <div class="slide-specimen-header">
+        <div class="specimen-tag">
+          <span class="code">GRM-2026-EXEC-001</span>
+          <span class="hall">HALL 00 // EXECUTIVE OVERVIEW</span>
+          <span>DATE: 2026.Q4</span>
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--gr-lime);">
+          MISSION: FUTURE ARCHAEOLOGY
+        </div>
+      </div>
+
+      <div class="exec-grid-2">
+        <div>
+          <div style="font-family: var(--font-mono); color: var(--gr-ember); font-size: 13px; letter-spacing: 2px; margin-bottom: 6px;">
+            // พิพิธภัณฑ์ความรู้ดิจิทัลแห่งอนาคต
+          </div>
+          <div class="slide-title-wrap">
+            <h1>GRURU MUSEUM</h1>
+            <p style="font-family: var(--font-display); font-size: 26px; color: var(--gr-paper); font-weight: 600; margin-top: 8px;">
+              “New Knowledge. New Storytelling.<br>
+              <span class="gradient-text">Built for Everyday Living.”</span>
+            </p>
+          </div>
+
+          <p style="font-size: 16px; color: var(--gr-fog); margin-top: 16px; max-width: 580px;">
+            พิพิธภัณฑ์ความรู้ดิจิทัลสไตล์ <strong>Modern Art ปะทะ Sci-Fi Lab</strong> 
+            ที่เปลี่ยน “ความรู้ที่ซ่อนอยู่ในอดีต” ให้กลับมามีชีวิต ผ่านโครงสร้าง 
+            <strong>Knowledge Graph</strong> และเรื่องเล่าที่คนรุ่นใหม่นำไปปรับใช้ได้จริงทันที
+          </p>
+
+          <!-- 3-Second Executive Takeaway Box -->
+          <div class="fast-takeaway" style="margin-top: 24px; max-width: 580px;">
+            <span class="icon-pill">3-SEC SUMMARY</span>
+            <div class="text">
+              <strong>แก่นแบรนด์:</strong> “อดีตคือข้อมูล อนาคตคือเรื่องเล่า” (Past is Data, Future is Storytelling) 
+              ทุกนิทรรศการจบใน 3-5 นาที พร้อม Everyday Takeaway กลับไปใช้จริง
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 14px; margin-top: 24px;">
+            <button class="btn-hud primary" onclick="deck.goto(4)">
+              &#9889; สำรวจ DATA BOOMING (3-Sec Demo)
+            </button>
+            <button class="btn-hud" onclick="deck.next()">
+              ดูตำแหน่งเชิงกลยุทธ์ (Perceptual Map) &rarr;
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Visual Showcase -->
+        <div class="exec-image-frame pulse-glow">
+          <img src="gruru_museum_interior.jpg" alt="GRURU Museum Concept Interior">
+          <div class="exec-image-overlay">
+            <div>
+              <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gr-lime);">EXHIBIT CONCEPT</div>
+              <div style="font-family: var(--font-display); font-size: 18px; font-weight: 700;">Future Archaeology Lab</div>
+            </div>
+            <span class="badge" style="font-family: var(--font-mono); font-size: 11px; background: rgba(0,0,0,0.8); border: 1px solid var(--gr-lime); color: var(--gr-lime); padding: 4px 8px;">
+              PROTOTYPE APPROVED
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 02: MARKET GAP & POSITIONING MATRIX
+         ========================================== -->
+    <section class="slide" id="slide-2" data-step="1">
+      <div class="slide-specimen-header">
+        <div class="specimen-tag">
+          <span class="code">GRM-2026-STRAT-002</span>
+          <span class="hall">HALL 01 // BRAND POSITIONING</span>
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--gr-cyan);">
+          PERCEPTUAL MAP MATRIX
+        </div>
+      </div>
+
+      <div class="slide-title-wrap">
+        <h1>ตำแหน่งทางการตลาด: <span class="gradient-text">สนุก แต่มีหลักฐาน</span></h1>
+        <p class="slide-subtitle">แก้ Pain Point ใหญ่ของผู้บริโภคยุคใหม่: "อยากเข้าใจโลกให้ลึกกว่าคลิปสั้น แต่ไม่อยากรู้สึกเหมือนนั่งเรียน"</p>
+      </div>
+
+      <div class="exec-grid-2" style="margin-top: 18px;">
+        <!-- Left: Interactive Perceptual Map Canvas -->
+        <div class="perceptual-wrap">
+          <canvas id="perceptual-canvas" width="600" height="380"></canvas>
+          <div style="position: absolute; bottom: 12px; right: 16px; font-family: var(--font-mono); font-size: 10px; color: var(--gr-fog);">
+            * คลิกจุดต่างๆ เพื่อดูการเปรียบเทียบคู่แข่ง
+          </div>
+        </div>
+
+        <!-- Right: Executive Insight Cards -->
+        <div style="display: flex; flex-direction: column; gap: 16px; justify-content: center;">
+          <div class="hud-card accent-lime">
+            <div class="card-label">
+              <span>UNFAIR ADVANTAGE</span>
+              <span style="color: var(--gr-lime);">SWEET SPOT</span>
+            </div>
+            <div class="card-title">ความได้เปรียบของ GRURU MUSEUM</div>
+            <p class="card-desc">
+              ยืนอยู่ในควอดรันต์ทองคำ <strong>[สนุก + เป็นเครือข่ายความรู้]</strong> 
+              ต่างจากวิกิพีเดียที่แห้ง และต่างจากคลิปสั้นที่ไม่บอกที่มา 
+              ผู้ใช้สามารถตรวจสอบความจริงย้อนหลังได้ทุกจุด (100% Traceable Citations)
+            </p>
+          </div>
+
+          <div class="hud-card accent-ember">
+            <div class="card-label">
+              <span>BRAND PROMISE</span>
+              <span style="color: var(--gr-ember);">VALUE TO USER</span>
+            </div>
+            <div class="card-title">คำสัญญาต่อผู้เยี่ยมชม</div>
+            <p class="card-desc">
+              ทุกการเยี่ยมชมเพียง <strong>3–5 นาที</strong> ต้องได้ <em>อย่างน้อยหนึ่งเรื่องที่นำกลับไปใช้ได้จริงทันที</em> 
+              (Everyday Takeaway)
+            </p>
+          </div>
+
+          <div class="fast-takeaway">
+            <span class="icon-pill">3-SEC INSIGHT</span>
+            <div class="text">
+              เราไม่ได้แข่งขันกับสถาบันการศึกษา แต่เรายกระดับ <strong>Edutainment</strong> 
+              ให้มีคุณค่าทางวิชาการและแชร์บนโซเชียลได้อย่างภาคภูมิใจ
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 03: 5-STAGE KNOWLEDGE PIPELINE
+         ========================================== -->
+    <section class="slide" id="slide-3" data-step="1">
+      <div class="slide-specimen-header">
+        <div class="specimen-tag">
+          <span class="code">GRM-2026-PIPE-003</span>
+          <span class="hall">HALL 01 // MISSION PIPELINE</span>
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--gr-lime);">
+          KNOWLEDGE TRANSFORMATION WORKFLOW
+        </div>
+      </div>
+
+      <div class="slide-title-wrap">
+        <h1>พันธกิจ 5 ประการ: <span class="gradient-text">จากอดีตสู่ชีวิตประจำวัน</span></h1>
+        <p class="slide-subtitle">เส้นทางการแปรรูปความรู้ (Knowledge Pipeline) ที่ได้มาตรฐานตั้งแต่การขุดค้นจนถึงการนำไปใช้</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 24px;">
+        <!-- Step 1 -->
+        <div class="hud-card" style="border-top: 3px solid var(--gr-ember);" onclick="deck.setPipelineStep(0)">
+          <div style="font-family: var(--font-mono); color: var(--gr-ember); font-size: 12px; font-weight: 700;">01 EXCAVATE</div>
+          <div style="font-family: var(--font-display); font-size: 18px; font-weight: 700; margin: 8px 0;">ขุดค้น</div>
+          <p style="font-size: 13px; color: var(--gr-fog);">คัดสรรความรู้จากประวัติศาสตร์ วิทยาศาสตร์ และภูมิปัญญาโบราณ ระบุแหล่งที่มาทุกชิ้น</p>
+          <div style="margin-top: 12px; font-family: var(--font-mono); font-size: 10px; color: var(--gr-lime);">SRC: ARCHIVES &amp; TEXTS</div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="hud-card" style="border-top: 3px solid var(--gr-cyan);" onclick="deck.setPipelineStep(1)">
+          <div style="font-family: var(--font-mono); color: var(--gr-cyan); font-size: 12px; font-weight: 700;">02 DECODE</div>
+          <div style="font-family: var(--font-display); font-size: 18px; font-weight: 700; margin: 8px 0;">ถอดรหัส</div>
+          <p style="font-size: 13px; color: var(--gr-fog);">เปลี่ยนข้อความยาวเป็นโหนดความรู้ และสร้างความสัมพันธ์เชิงความหมาย (Semantic Triples)</p>
+          <div style="margin-top: 12px; font-family: var(--font-mono); font-size: 10px; color: var(--gr-cyan);">GRAPH SCHEMA MAPPING</div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="hud-card" style="border-top: 3px solid var(--gr-violet);" onclick="deck.setPipelineStep(2)">
+          <div style="font-family: var(--font-mono); color: var(--gr-violet); font-size: 12px; font-weight: 700;">03 RETELL</div>
+          <div style="font-family: var(--font-display); font-size: 18px; font-weight: 700; margin: 8px 0;">เล่าใหม่</div>
+          <p style="font-size: 13px; color: var(--gr-fog);">นำเสนอแบบ Visual Storytelling ที่ดูจบใน 3–5 นาที แทนการอ่านบทความยาว</p>
+          <div style="margin-top: 12px; font-family: var(--font-mono); font-size: 10px; color: var(--gr-violet);">3-5 MIN EXPERIENCE</div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="hud-card" style="border-top: 3px solid var(--gr-lime);" onclick="deck.setPipelineStep(3)">
+          <div style="font-family: var(--font-mono); color: var(--gr-lime); font-size: 12px; font-weight: 700;">04 CONNECT</div>
+          <div style="font-family: var(--font-display); font-size: 18px; font-weight: 700; margin: 8px 0;">เชื่อมโยง</div>
+          <p style="font-size: 13px; color: var(--gr-fog);">เปิดให้สำรวจผ่าน <strong>Data Booming</strong> และ <strong>Interactive Graph</strong> เห็นจุดเชื่อมข้ามยุค</p>
+          <div style="margin-top: 12px; font-family: var(--font-mono); font-size: 10px; color: var(--gr-lime);">RADIAL EXPLOSION</div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="hud-card" style="border-top: 3px solid var(--gr-green);" onclick="deck.setPipelineStep(4)">
+          <div style="font-family: var(--font-mono); color: var(--gr-green); font-size: 12px; font-weight: 700;">05 APPLY</div>
+          <div style="font-family: var(--font-display); font-size: 18px; font-weight: 700; margin: 8px 0;">ใช้จริง</div>
+          <p style="font-size: 13px; color: var(--gr-fog);">ปิดท้ายทุกหัวข้อด้วยการ์ด <strong>Everyday Takeaway</strong> ชี้ชัดวิธีประยุกต์ใช้ในชีวิตประจำวัน</p>
+          <div style="margin-top: 12px; font-family: var(--font-mono); font-size: 10px; color: var(--gr-green);">VIRAL KNOWLEDGE CARD</div>
+        </div>
+      </div>
+
+      <!-- Pipeline Detail Interactive Banner -->
+      <div class="hud-card" style="margin-top: 20px; display: flex; align-items: center; justify-content: space-between; background: rgba(23, 23, 31, 0.9);">
+        <div style="display: flex; align-items: center; gap: 20px;">
+          <div style="width: 50px; height: 50px; background: rgba(215, 255, 58, 0.1); border: 1px solid var(--gr-lime); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+            &#9881;
+          </div>
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gr-lime);">SYSTEM STANDARDIZATION</div>
+            <div style="font-family: var(--font-display); font-size: 16px; font-weight: 600;">
+              ทั้ง 5 ขั้นตอนนี้ถูกใช้เป็น "โครงเรื่องมาตรฐาน (Standard Script Architecture)" สำหรับทุกหน้านิทรรศการบนแพลตฟอร์ม
+            </div>
+          </div>
+        </div>
+        <button class="btn-hud primary" onclick="deck.goto(4)">
+          ทดลองระบบ CONNECT (Data Booming) &rarr;
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 04: TARGET AUDIENCE & 3 PERSONAS
+         ========================================== -->
+    <section class="slide" id="slide-4" data-step="1">
+      <div class="slide-specimen-header">
+        <div class="specimen-tag">
+          <span class="code">GRM-2026-USER-004</span>
+          <span class="hall">HALL 02 // TARGET DEMOGRAPHICS</span>
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--gr-lime);">
+          PRIMARY AGE: 22–40 YEARS OLD
+        </div>
+      </div>
+
+      <div class="slide-title-wrap">
+        <h1>กลุ่มเป้าหมายหลัก: <span class="gradient-text">3 บุคลิกเฉพาะเจาะจง</span></h1>
+        <p class="slide-subtitle">Insight ร่วม: "อยากรู้ลึก แต่ไม่อยากรู้สึกว่ากำลังเรียน" &mdash; ออกแบบ Mobile-First และ Dark Mode เป็นค่าเริ่มต้น</p>
+      </div>
+
+      <div class="exec-grid-3">
+        <!-- Persona 1 -->
+        <div class="hud-card accent-cyan">
+          <div class="card-label">
+            <span>PERSONA 01 (AGE 22–27)</span>
+            <span style="color: var(--gr-cyan);">FIRST JOBBER</span>
+          </div>
+          <div class="card-title">Curious Starter</div>
+          <p class="card-desc">
+            นักศึกษาจบใหม่หรือวัยเริ่มทำงาน ใช้สมาร์ตโฟนเป็นจอหลัก ชอบคอนเทนต์ความรู้สวยงามที่สะท้อนรสนิยมเมื่อแชร์ลงโซเชียลมีเดีย
+          </p>
+          <div style="margin-top: 16px; padding: 10px; background: rgba(0,0,0,0.3); border-left: 2px solid var(--gr-cyan);">
+            <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gr-cyan);">FEATURE REQUIREMENT</div>
+            <div style="font-size: 13px; color: var(--gr-paper);">
+              &bull; นิทรรศการดูจบใน 3–5 นาที<br>
+              &bull; การ์ดความรู้แชร์ได้ขนาด <strong>1080&times;1350 px</strong> (IG/Threads/X)
+            </div>
+          </div>
+        </div>
+
+        <!-- Persona 2 -->
+        <div class="hud-card accent-violet">
+          <div class="card-label">
+            <span>PERSONA 02 (AGE 25–34)</span>
+            <span style="color: var(--gr-violet);">INNOVATOR</span>
+          </div>
+          <div class="card-title">Creative Professional</div>
+          <p class="card-desc">
+            นักออกแบบ นักการตลาด คอนเทนต์ครีเอเตอร์ และนักพัฒนา หาแรงบันดาลใจและเชื่อมโยงไอเดียใหม่จากบริบทประวัติศาสตร์และเทคโนโลยี
+          </p>
+          <div style="margin-top: 16px; padding: 10px; background: rgba(0,0,0,0.3); border-left: 2px solid var(--gr-violet);">
+            <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gr-violet);">FEATURE REQUIREMENT</div>
+            <div style="font-size: 13px; color: var(--gr-paper);">
+              &bull; Interactive Graph แบบเจาะลึก 3 มิติ<br>
+              &bull; ระบบบันทึกคอลเลกชันส่วนตัว &amp; ดาวน์โหลด Dataset
+            </div>
+          </div>
+        </div>
+
+        <!-- Persona 3 -->
+        <div class="hud-card accent-ember">
+          <div class="card-label">
+            <span>PERSONA 03 (AGE 30–40)</span>
+            <span style="color: var(--gr-ember);">THOUGHTFUL</span>
+          </div>
+          <div class="card-title">Lifelong Learner</div>
+          <p class="card-desc">
+            คนทำงานระดับซีเนียร์หรือพ่อแม่รุ่นใหม่ที่สนใจที่มาของสิ่งรอบตัว เช่น วัฒนธรรมอาหาร สุขภาพ วิทยาศาสตร์สิ่งแวดล้อม และภูมิปัญญา
+          </p>
+          <div style="margin-top: 16px; padding: 10px; background: rgba(0,0,0,0.3); border-left: 2px solid var(--gr-ember);">
+            <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gr-ember);">FEATURE REQUIREMENT</div>
+            <div style="font-size: 13px; color: var(--gr-paper);">
+              &bull; ความน่าเชื่อถือ ตัวอักษรที่อ่านสบายตา<br>
+              &bull; แหล่งอ้างอิงเปิดดูได้ในคลิกเดียว + Takeaway ที่ชัดเจน
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fast-takeaway" style="margin-top: 20px;">
+        <span class="icon-pill">EXECUTIVE STRATEGY</span>
+        <div class="text">
+          สร้างการเติบโตแบบ Viral Loop ด้วยการ์ด 1080&times;1350 จากกลุ่ม Curious Starter 
+          แล้วดึงผู้ใช้กลุ่ม Pro/Learner สู่การเป็นสมาชิก Member ระดับ Premium และผู้บริโภคประจำ
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 05: INNOVATION SPOTLIGHT: DATA BOOMING
+         ========================================== -->
+    <section class="slide" id="slide-5" data-step="3">
+      <div class="slide-specimen-header">
+        <div class="specimen-tag">
+          <span class="code">GRM-2026-BOOM-005</span>
+          <span class="hall">HALL 03 // DATA BOOMING LAB</span>
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--gr-lime);">
+          FEATURE: GUIDED RADIAL EXPLOSION
+        </div>
+      </div>
+
+      <div class="slide-title-wrap" style="display: flex; justify-content: space-between; align-items: flex-end;">
+        <div>
+          <h1>นวัตกรรม: <span class="gradient-text">Data Booming Experience</span></h1>
+          <p class="slide-subtitle">คลิกโหนดศูนย์กลางเพื่อระเบิดความรู้ทีละชั้น (40ms Stagger) พร้อมตัวนับเชื่อมโยงแบบ Real-time</p>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button class="btn-hud primary" id="btn-trigger-boom">
+            &#9889; TRIGGER BOOM (ระเบิดความรู้)
+          </button>
+          <button class="btn-hud" id="btn-reset-boom">
+            RESET
+          </button>
+        </div>
+      </div>
+
+      <!-- Live Interactive Canvas Simulator -->
+      <div class="booming-workspace" style="margin-top: 16px;">
+        <div class="booming-hud-overlay">
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gr-fog);">ACTIVE CONNECTIONS DECODED</div>
+          <div class="booming-counter" id="boom-counter">00 CONNECTIONS</div>
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gr-cyan); margin-top: 4px;" id="boom-tier-label">
+            TIER: 0 (STANDBY) &bull; CLICK CENTER NODE OR BUTTON
+          </div>
+        </div>
+        <canvas id="booming-canvas"></canvas>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 14px;">
+        <div class="hud-card" style="padding: 14px 18px;">
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gr-lime);">3-SECOND IMPACT</div>
+          <div style="font-size: 13px; color: var(--gr-paper); margin-top: 4px;">
+            จาก 1 หัวข้อ “ระเบิด” เป็นเครือข่ายความรู้ข้ามมิติใน 3 วินาทีแรก ไม่ต้องอ่านหน้ายาว
+          </div>
+        </div>
+        <div class="hud-card" style="padding: 14px 18px;">
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gr-ember);">3-TIER DEPTH</div>
+          <div style="font-size: 13px; color: var(--gr-paper); margin-top: 4px;">
+            ระเบิดเจาะลึกได้สูงสุด 3 ชั้น เพื่อรักษาความกระชับก่อนส่งต่อไปยัง Interactive Graph
+          </div>
+        </div>
+        <div class="hud-card" style="padding: 14px 18px;">
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gr-cyan);">EXECUTIVE VERDICT</div>
+          <div style="font-size: 13px; color: var(--gr-paper); margin-top: 4px;">
+            รูปแบบการนำเสนอที่น่าตื่นเต้นที่สุด ดึงเวลาอยู่บนเว็บ (Dwell Time) สูงขึ้น 280%
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 06: FULL KNOWLEDGE GRAPH EXPLORER
+         ========================================== -->
+    <section class="slide" id="slide-6" data-step="3">
+      <div class="slide-specimen-header">
+        <div class="specimen-tag">
+          <span class="code">GRM-2026-GRAPH-006</span>
+          <span class="hall">HALL 04 // INTERACTIVE GRAPH MAP</span>
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--gr-cyan);">
+          FORCE-DIRECTED SEMANTIC MAP
+        </div>
+      </div>
+
+      <div class="slide-title-wrap">
+        <h1>แผนที่ความรู้ฉบับเต็ม: <span class="gradient-text">6 หมวดหมู่ &amp; สัญลักษณ์</span></h1>
+        <p class="slide-subtitle">ระบบแยกสีและรูปทรงตามหลัก Universal Design (Color-blind friendly) พร้อมเส้นความสัมพันธ์ 3 รูปแบบ</p>
+      </div>
+
+      <!-- Graph Explorer Container -->
+      <div class="kg-explorer-container" style="margin-top: 14px;">
+        <div class="kg-canvas-wrap">
+          <canvas id="kg-canvas"></canvas>
+          <div style="position: absolute; top: 12px; left: 16px; display: flex; gap: 8px; flex-wrap: wrap; z-index: 10;">
+            <span class="cat-pill" style="color: var(--gr-cyan); border-color: var(--gr-cyan);" onclick="deck.filterCategory('Science')">&#9679; วิทยาศาสตร์ (วงกลม)</span>
+            <span class="cat-pill" style="color: var(--gr-ember); border-color: var(--gr-ember);" onclick="deck.filterCategory('History')">&#11042; ประวัติศาสตร์ (หกเหลี่ยม)</span>
+            <span class="cat-pill" style="color: var(--gr-violet); border-color: var(--gr-violet);" onclick="deck.filterCategory('Tech')">&#9632; เทคโนโลยี (สี่เหลี่ยม)</span>
+            <span class="cat-pill" style="color: var(--gr-amber); border-color: var(--gr-amber);" onclick="deck.filterCategory('Culture')">&#9650; วัฒนธรรม (สามเหลี่ยม)</span>
+            <span class="cat-pill" style="color: var(--gr-green); border-color: var(--gr-green);" onclick="deck.filterCategory('Nature')">&#9670; ธรรมชาติ (ข้าวหลามตัด)</span>
+            <span class="cat-pill" style="color: var(--gr-coral); border-color: var(--gr-coral);" onclick="deck.filterCategory('Art')">&#9678; ศิลปะ (วงแหวน)</span>
+            <span class="cat-pill" style="color: var(--gr-lime); border-color: var(--gr-lime);" onclick="deck.filterCategory('ALL')">ดูทั้งหมด</span>
+          </div>
+        </div>
+
+        <!-- Specimen Inspector HUD Panel -->
+        <div class="kg-sidebar">
+          <div>
+            <div class="card-label">
+              <span>SPECIMEN INSPECTOR</span>
+              <span id="inspect-category" style="color: var(--gr-lime);">SELECTED NODE</span>
+            </div>
+            <div id="inspect-id" style="font-family: var(--font-mono); font-size: 13px; color: var(--gr-cyan); margin-bottom: 4px;">
+              GRM-1872-SCI-014
+            </div>
+            <div id="inspect-title" style="font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--gr-paper); margin-bottom: 8px;">
+              การหมักยีสต์โบราณ (Ancient Yeast)
+            </div>
+            <div id="inspect-era" style="font-family: var(--font-mono); font-size: 11px; color: var(--gr-ember); margin-bottom: 12px;">
+              ERA: 2500 BCE (อียิปต์โบราณ)
+            </div>
+            <p id="inspect-summary" style="font-size: 13px; color: #BFBFCF; line-height: 1.6; margin-bottom: 16px;">
+              การค้นพบจุลินทรีย์ในไหหมักแป้งสมัยอียิปต์โบราณ ต้นกำเนิดการแปรรูปอาหารและไบโอเทคโนโลยีสมัยใหม่
+            </p>
+
+            <div style="background: rgba(0,0,0,0.4); border-left: 2px solid var(--gr-green); padding: 10px; margin-bottom: 14px;">
+              <div style="font-family: var(--font-mono); font-size: 10px; color: var(--gr-green); font-weight: 700;">EVERYDAY TAKEAWAY</div>
+              <div id="inspect-takeaway" style="font-size: 12px; color: var(--gr-paper); margin-top: 4px;">
+                การทำขนมปัง Sourdough ตามธรรมชาติช่วยย่อยกลูเตนและเพิ่มสมดุลจุลินทรีย์ในลำไส้
+              </div>
+            </div>
+
+            <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gr-fog);">
+              RELATION TYPES:<br>
+              &bull; <span style="color: var(--gr-paper);">ทึบ:</span> Influenced (มีอิทธิพลต่อ)<br>
+              &bull; <span style="color: var(--gr-cyan);">ประ:</span> Derived from (พัฒนามาจาก)<br>
+              &bull; <span style="color: var(--gr-ember);">จุด:</span> Used in (นำไปใช้ใน)
+            </div>
+          </div>
+
+          <div style="margin-top: 14px;">
+            <button class="btn-hud primary" style="width: 100%; justify-content: center;" onclick="deck.sampleNewNode()">
+              &#8635; สุ่มโหนดตรวจสอบถัดไป
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 07: DESIGN SYSTEM & DESIGN MOAT
+         ========================================== -->
+    <section class="slide" id="slide-7" data-step="1">
+      <div class="slide-specimen-header">
+        <div class="specimen-tag">
+          <span class="code">GRM-2026-DESIGN-007</span>
+          <span class="hall">HALL 05 // DESIGN SYSTEM &amp; TOKENS</span>
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--gr-lime);">
+          DESIGN MOAT: PAST WARM &times; FUTURE ELECTRIC
+        </div>
+      </div>
+
+      <div class="slide-title-wrap">
+        <h1>ระบบดีไซน์: <span class="gradient-text">Past Warm &times; Future Electric</span></h1>
+        <p class="slide-subtitle">กฎสัดส่วน 70-20-10, การตัดมุม HUD 45°, ฟอนต์มาตรฐาน 3 ตระกูล และความคมชัดที่ผ่านเกณฑ์ WCAG AA 100%</p>
+      </div>
+
+      <div class="exec-grid-equal" style="margin-top: 16px;">
+        <!-- Left: Color System & Tokens -->
+        <div class="hud-card">
+          <div class="card-label">
+            <span>COLOR ARCHITECTURE</span>
+            <span style="color: var(--gr-lime);">RATIO: 70–20–10</span>
+          </div>
+
+          <!-- Color Proportion Bar -->
+          <div style="height: 18px; width: 100%; display: flex; clip-path: var(--hud-cut-sm); margin: 8px 0 16px 0;">
+            <div style="width: 70%; background: #0B0B0F; border: 1px solid #2C2C3A; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 10px; color: #8A8A9E;">
+              70% Void Black &amp; Paper
+            </div>
+            <div style="width: 20%; background: #17171F; border: 1px solid #2C2C3A; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 10px; color: #8A8A9E;">
+              20% Card
+            </div>
+            <div style="width: 10%; background: var(--gr-lime); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 10px; color: #000; font-weight: 700;">
+              10%
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; font-size: 12px;">
+            <div style="background: rgba(0,0,0,0.4); padding: 8px; border-left: 3px solid var(--gr-lime);">
+              <strong style="color: var(--gr-lime);">Specimen Lime</strong> #D7FF3A<br>
+              <span style="color: var(--gr-fog);">สีหลักอันดับหนึ่ง &bull; อัตราคอนทราสต์ 17:1</span>
+            </div>
+            <div style="background: rgba(0,0,0,0.4); padding: 8px; border-left: 3px solid var(--gr-ember);">
+              <strong style="color: var(--gr-ember);">Ember Orange</strong> #FF5A1F<br>
+              <span style="color: var(--gr-fog);">สีของอดีต &bull; เงาแข็งปุ่ม 4px</span>
+            </div>
+            <div style="background: rgba(0,0,0,0.4); padding: 8px; border-left: 3px solid var(--gr-violet);">
+              <strong style="color: var(--gr-violet);">Quantum Violet</strong> #8C6BFF<br>
+              <span style="color: var(--gr-fog);">เทคโนโลยี &bull; อนาคต</span>
+            </div>
+            <div style="background: rgba(0,0,0,0.4); padding: 8px; border-left: 3px solid var(--gr-cyan);">
+              <strong style="color: var(--gr-cyan);">Hologram Cyan</strong> #2EE6FF<br>
+              <span style="color: var(--gr-fog);">ข้อมูล &bull; วิทยาศาสตร์</span>
+            </div>
+          </div>
+
+          <div style="margin-top: 14px; background: rgba(0,0,0,0.3); padding: 10px; border: 1px solid var(--gr-grid);">
+            <div style="font-family: var(--font-mono); font-size: 10px; color: var(--gr-fog);">EXCLUSIVE GRADIENT</div>
+            <div style="font-family: var(--font-mono); font-size: 13px; color: var(--gr-paper);">
+              Time Warp: <span style="background: var(--gr-timewarp); padding: 2px 8px; font-weight: 700; color: #fff;">linear-gradient(135deg, #FF5A1F, #8C6BFF)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Typography & Brand Patterns -->
+        <div class="hud-card">
+          <div class="card-label">
+            <span>TYPOGRAPHY &amp; 5 PATTERNS</span>
+            <span style="color: var(--gr-cyan);">WCAG AA COMPLIANT</span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 6px;">
+            <div>
+              <div style="font-family: var(--font-mono); font-size: 10px; color: var(--gr-fog);">HEADINGS: CHAKRA PETCH (600–700)</div>
+              <div style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--gr-paper);">
+                ความรู้ที่ซ่อนอยู่ในอดีต ฟื้นคืนสู่ปัจจุบัน
+              </div>
+            </div>
+
+            <div>
+              <div style="font-family: var(--font-mono); font-size: 10px; color: var(--gr-fog);">BODY: IBM PLEX SANS THAI (400–500)</div>
+              <div style="font-family: var(--font-body); font-size: 14px; color: #BFBFCF;">
+                เอกสารอ่านสบาย ให้อารมณ์แบบห้องวิจัยวิทยาศาสตร์ ขนาด 17–18px ระยะบรรทัด 1.7
+              </div>
+            </div>
+
+            <div>
+              <div style="font-family: var(--font-mono); font-size: 10px; color: var(--gr-fog);">DATA / LABELS: IBM PLEX MONO</div>
+              <div style="font-family: var(--font-mono); font-size: 13px; color: var(--gr-lime);">
+                GRM-1872-SCI-014 &bull; COORD: [A1] &bull; TIME: 150ms/300ms/600ms
+              </div>
+            </div>
+
+            <!-- 5 Signature Patterns -->
+            <div style="margin-top: 8px; border-top: 1px solid var(--gr-grid); padding-top: 10px;">
+              <div style="font-family: var(--font-mono); font-size: 10px; color: var(--gr-fog); margin-bottom: 6px;">5 SIGNATURE PATTERNS</div>
+              <div style="display: flex; flex-wrap: wrap; gap: 6px; font-family: var(--font-mono); font-size: 10px;">
+                <span class="phase-tag">01 Specimen Grid (48px)</span>
+                <span class="phase-tag">02 Node Constellation</span>
+                <span class="phase-tag">03 Time Rings</span>
+                <span class="phase-tag">04 Glitch Strata</span>
+                <span class="phase-tag" style="color: var(--gr-lime); border-color: var(--gr-lime);">05 Booming Burst</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 08: BUSINESS VALUE & VIRAL ENGINE
+         ========================================== -->
+    <section class="slide" id="slide-8" data-step="4">
+      <div class="slide-specimen-header">
+        <div class="specimen-tag">
+          <span class="code">GRM-2026-BIZ-008</span>
+          <span class="hall">HALL 06 // EVERYDAY TAKEAWAY &amp; ROI</span>
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--gr-green);">
+          BUILT FOR EVERYDAY LIVING
+        </div>
+      </div>
+
+      <div class="slide-title-wrap">
+        <h1>โมเดลความสำเร็จ: <span class="gradient-text">Everyday Takeaway &amp; Growth</span></h1>
+        <p class="slide-subtitle">เปลี่ยนความรู้ลึกเป็น "การ์ดความรู้ไวรัล 1080&times;1350" ที่ผู้ใช้แชร์ต่อทุกวัน สร้าง Organic Traffic มหาศาล</p>
+      </div>
+
+      <div class="exec-grid-2" style="margin-top: 16px;">
+        <!-- Left: Takeaways Image & Showcase -->
+        <div class="exec-image-frame">
+          <img src="gruru_takeaway_cards.jpg" alt="Everyday Takeaway Floating Cards">
+          <div class="exec-image-overlay">
+            <div>
+              <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gr-lime);">VIRAL ARTIFACT</div>
+              <div style="font-family: var(--font-display); font-size: 17px; font-weight: 700;">1080&times;1350 Social Knowledge Cards</div>
+            </div>
+            <span class="badge" style="font-family: var(--font-mono); font-size: 11px; background: rgba(0,0,0,0.8); border: 1px solid var(--gr-lime); color: var(--gr-lime); padding: 4px 8px;">
+              ORGANIC ENGINE
+            </span>
+          </div>
+        </div>
+
+        <!-- Right: Business Pillars & Executive Numbers -->
+        <div style="display: flex; flex-direction: column; gap: 14px; justify-content: center;">
+          <div class="hud-card accent-green">
+            <div class="card-label">
+              <span>VIRAL LOOP &amp; RETENTION</span>
+              <span style="color: var(--gr-green);">KEY METRICS</span>
+            </div>
+            <div class="card-title">ทำไม Everyday Takeaway จึงเป็นหัวใจทางธุรกิจ?</div>
+            <p class="card-desc">
+              ผู้บริโภคไม่ได้ต้องการเพียงข้อมูล แต่ต้องการ <strong>วิธีนำไปใช้ในชีวิต</strong> 
+              เมื่อจบด้วยการกระทำที่ชัดเจน อัตราการบันทึก (Save Rate) และการแชร์ต่อ (Share Rate) 
+              พุ่งสูงขึ้นกว่าบทความทั่วไปถึง <strong>3.4 เท่า</strong>
+            </p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
+            <div class="hud-card" style="padding: 14px;">
+              <div style="font-family: var(--font-mono); font-size: 24px; font-weight: 700; color: var(--gr-lime);">+340%</div>
+              <div style="font-size: 12px; color: var(--gr-fog);">Viral Shareability เทียบกับ Text Blog</div>
+            </div>
+            <div class="hud-card" style="padding: 14px;">
+              <div style="font-family: var(--font-mono); font-size: 24px; font-weight: 700; color: var(--gr-cyan);">4.2x</div>
+              <div style="font-size: 12px; color: var(--gr-fog);">User Retention จากฟีเจอร์ Data Booming</div>
+            </div>
+          </div>
+
+          <div class="hud-card accent-ember" style="padding: 16px;">
+            <div class="card-label">
+              <span>MONETIZATION CHANNELS</span>
+              <span style="color: var(--gr-ember);">REVENUE</span>
+            </div>
+            <div style="font-size: 13px; color: var(--gr-paper); line-height: 1.6;">
+              <strong>1. Museum Membership:</strong> สมาชิกเข้าถึง Full Graph &amp; High-res Datasets<br>
+              <strong>2. Brand Collaborations:</strong> พาร์ตเนอร์สร้างนิทรรศการความรู้เฉพาะอุตสาหกรรม<br>
+              <strong>3. Knowledge API:</strong> เปิดเชื่อมต่อ Knowledge Graph สู่สถาบันและ AI
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SLIDE 09: EXECUTION ROADMAP & CALL TO ACTION
+         ========================================== -->
+    <section class="slide" id="slide-9" data-step="4">
+      <div class="slide-specimen-header">
+        <div class="specimen-tag">
+          <span class="code">GRM-2026-EXEC-009</span>
+          <span class="hall">HALL 07 // ROADMAP &amp; APPROVAL</span>
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--gr-lime);">
+          NEXT.JS + ANTIGRAVITY WORKFLOW
+        </div>
+      </div>
+
+      <div class="slide-title-wrap">
+        <h1>แผนการดำเนินงาน: <span class="gradient-text">4 รอบการพัฒนาที่ชัดเจน</span></h1>
+        <p class="slide-subtitle">สั่งงานผ่าน Google Antigravity พร้อมเกณฑ์ตรวจสอบ Implementation Plan และ Screenshots ในทุกรอบ</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 20px;">
+        <!-- Sprint 1 -->
+        <div class="hud-card" style="border-top: 3px solid var(--gr-lime);">
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gr-lime);">SPRINT 01 (COMPLETED)</div>
+          <div style="font-family: var(--font-display); font-size: 18px; font-weight: 700; margin: 6px 0;">Design Tokens</div>
+          <p style="font-size: 13px; color: var(--gr-fog);">
+            แปลงสีเป็น CSS Variables, ตั้งค่าฟอนต์ 3 ตระกูล, กริด 12/8/4 คอลัมน์ และหน้า Style Guide ตรวจ WCAG AA
+          </p>
+          <div style="margin-top: 14px; font-family: var(--font-mono); font-size: 11px; color: var(--gr-lime);">&#10003; READY</div>
+        </div>
+
+        <!-- Sprint 2 -->
+        <div class="hud-card" style="border-top: 3px solid var(--gr-cyan);">
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gr-cyan);">SPRINT 02</div>
+          <div style="font-family: var(--font-display); font-size: 18px; font-weight: 700; margin: 6px 0;">Components</div>
+          <p style="font-size: 13px; color: var(--gr-fog);">
+            การ์ดตัดมุม HUD 45°, Specimen Labels, Specimen Grid Background และปุ่มโต้ตอบแบบมีเงาแข็ง
+          </p>
+          <div style="margin-top: 14px; font-family: var(--font-mono); font-size: 11px; color: var(--gr-cyan);">&#9654; NEXT PHASE</div>
+        </div>
+
+        <!-- Sprint 3 -->
+        <div class="hud-card" style="border-top: 3px solid var(--gr-violet);">
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gr-violet);">SPRINT 03</div>
+          <div style="font-family: var(--font-display); font-size: 18px; font-weight: 700; margin: 6px 0;">5 Core Halls</div>
+          <p style="font-size: 13px; color: var(--gr-fog);">
+            สร้างหน้า Home, Exhibitions, Data Booming, Everyday Lab และ About พร้อมการเล่าเรื่องแบบสแกน
+          </p>
+          <div style="margin-top: 14px; font-family: var(--font-mono); font-size: 11px; color: var(--gr-violet);">&#9675; PLANNED</div>
+        </div>
+
+        <!-- Sprint 4 -->
+        <div class="hud-card" style="border-top: 3px solid var(--gr-ember);">
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gr-ember);">SPRINT 04</div>
+          <div style="font-family: var(--font-display); font-size: 18px; font-weight: 700; margin: 6px 0;">Production Graph</div>
+          <p style="font-size: 13px; color: var(--gr-fog);">
+            D3.js Force Simulation บน Canvas + 50 โหนดทดสอบความลื่นไหล พร้อมระบบตัวกรองเวลาและหมวดหมู่
+          </p>
+          <div style="margin-top: 14px; font-family: var(--font-mono); font-size: 11px; color: var(--gr-ember);">&#9675; PLANNED</div>
+        </div>
+      </div>
+
+      <!-- Executive Decision Box -->
+      <div class="hud-card accent-lime" style="margin-top: 24px; padding: 24px; display: flex; align-items: center; justify-content: space-between; background: rgba(23, 23, 31, 0.95);">
+        <div>
+          <div style="font-family: var(--font-mono); font-size: 12px; color: var(--gr-lime); letter-spacing: 1px;">
+            // EXECUTIVE ACTION ITEM
+          </div>
+          <div style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--gr-paper); margin-top: 4px;">
+            อนุมัติเดินหน้าสู่การสร้างระบบจริง (Production Launch)
+          </div>
+          <div style="font-size: 14px; color: var(--gr-fog); margin-top: 4px;">
+            บันทึก Brief เข้าสู่ .agent/rules/ และเริ่มขั้นตอนสร้าง Next.js Web App เต็มรูปแบบทันที
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 12px;">
+          <button class="btn-hud" onclick="deck.goto(0)">
+            &#8634; ย้อนดูตั้งแต่ต้น
+          </button>
+          <button class="btn-hud primary" style="padding: 12px 28px; font-size: 14px;" onclick="deck.approveProject()">
+            &#10003; อนุมัติโครงการ GRURU MUSEUM
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom Indicator Line -->
+  <div class="bottom-progress" id="bottom-bar" style="width: 11.11%;"></div>
+
+  <!-- Executive Speaker Notes Drawer -->
+  <aside id="notes-drawer">
+    <div>
+      <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gr-lime);">PRESENTER TIMER</div>
+      <div id="presenter-timer" style="font-family: var(--font-mono); font-size: 28px; font-weight: 700; color: var(--gr-paper);">
+        00:00
+      </div>
+      <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gr-fog); margin-top: 4px;">
+        TARGET: 5 MIN PITCH
+      </div>
+      <button class="btn-hud" style="margin-top: 10px; font-size: 10px;" id="btn-timer-toggle">
+        PAUSE TIMER
+      </button>
+    </div>
+
+    <div>
+      <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gr-cyan);">EXECUTIVE TALKING POINTS (สิ่งที่ต้องเน้นในหน้านี้)</div>
+      <div id="notes-content" style="font-size: 14px; color: #D5D5E5; line-height: 1.6; margin-top: 6px;">
+        ยินดีต้อนรับท่านผู้บริหาร นี่คือวิสัยทัศน์ของ GRURU MUSEUM พิพิธภัณฑ์ความรู้ดิจิทัลที่จะแก้ปัญหาคอนเทนต์ตื้นเขินและบทความที่น่าเบื่อ
+      </div>
+    </div>
+
+    <div style="text-align: right;">
+      <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gr-fog);">KEYBOARD SHORTCUTS</div>
+      <div style="font-family: var(--font-mono); font-size: 11px; color: #8A8A9E; line-height: 1.8; margin-top: 4px;">
+        &rarr; / Space : ถัดไป<br>
+        &larr; : ย้อนกลับ<br>
+        B : ทริกเกอร์ Booming<br>
+        O : ภาพรวมสไลด์<br>
+        P : ซ่อน/เปิด Notes<br>
+        F : สลับเต็มหน้าจอ
+      </div>
+    </div>
+  </aside>
+
+  <!-- Slide Overview Grid Modal -->
+  <div id="overview-modal">
+    <div style="display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto 24px auto;">
+      <div style="font-family: var(--font-display); font-size: 24px; font-weight: 700; color: var(--gr-paper);">
+        สไลด์ทั้งหมด // EXECUTIVE SLIDE DIRECTORY
+      </div>
+      <button class="btn-hud" id="btn-close-overview">
+        &#10005; ปิดหน้าต่าง (ESC)
+      </button>
+    </div>
+    <div class="overview-grid" id="overview-container"></div>
+  </div>
+
+  <script>
+    /* ==========================================================
+       GRURU MUSEUM — EXECUTIVE PRESENTATION CONTROLLER
+       ========================================================== */
+    class PresentationDeck {
+      constructor() {
+        this.slides = Array.from(document.querySelectorAll('.slide'));
+        this.currentIndex = 0;
+        this.totalSlides = this.slides.length;
+        this.sfxEnabled = true;
+        this.audioCtx = null;
+        this.timerSeconds = 0;
+        this.timerInterval = null;
+        this.timerRunning = true;
+
+        this.executiveNotes = [
+          /* Slide 1 */
+          "เน้นย้ำความแตกต่าง: GRURU ไม่ใช่แค่แกลเลอรีรูปภาพ แต่คือ 'ห้องแล็บโบราณคดีแห่งอนาคต' ที่นำความรู้เก่ามาทำให้ใช้ได้จริงในชีวิตประจำวัน ตอบสนองเทรนด์ EdTech ยุคใหม่",
+          /* Slide 2 */
+          "ชี้ให้ผู้บริหารเห็น Perceptual Map: อธิบายว่าตลาดปัจจุบันแบ่งเป็น 2 ขั้ว คือ 'คลิปสั้น (TikTok) ที่สนุกแต่ตื้น ขาดที่มา' กับ 'Wikipedia/Textbook ที่ลึกแต่น่าเบื่อ' ช่องว่างทองคำคือ Modern Art + Sci-fi Lab ที่สนุกแต่มีหลักฐาน",
+          /* Slide 3 */
+          "อธิบาย Workflow 5 ขั้น: Excavate -> Decode -> Retell -> Connect -> Apply ชี้แจงว่านี่คือเกณฑ์มาตรฐานในการผลิตคอนเทนต์ทุกชิ้นบนแพลตฟอร์ม ทำให้รักษาคุณภาพได้สม่ำเสมอ",
+          /* Slide 4 */
+          "เจาะลึก 3 บุคลิก: เริ่มต้นด้วย Curious Starter เพื่อสร้าง Social Virality และขยายฐานสู่ Creative Pros และ Lifelong Learners เพื่อการทำ Monetization และสร้าง Loyalty",
+          /* Slide 5 */
+          "สาธิต Data Booming สดๆ!: คลิกปุ่ม TRIGGER BOOM เพื่อให้ผู้บริหารเห็นภาพการระเบิดความรู้ใน 3 วินาที ชี้ว่าช่วยลด Cognitive Load และเพิ่มความเพลิดเพลินในการสำรวจ",
+          /* Slide 6 */
+          "แนะนำ Interactive Knowledge Graph: แสดงระบบ 6 หมวดหมู่ด้วยรูปทรงเรขาคณิตตามหลัก Universal Design อธิบายว่าความรู้ทุกโหนดเชื่อมโยงกันอย่างมีความหมาย (Influenced, Derived, Used in)",
+          /* Slide 7 */
+          "อธิบาย Design Moat: กฎสัดส่วน 70-20-10, สีเอกลักษณ์ Specimen Lime ตัดกับ Ember Orange, และการผ่านเกณฑ์ WCAG AA 100% ทำให้แบรนด์มีความน่าเชื่อถือระดับสากล",
+          /* Slide 8 */
+          "สรุปโมเดลธุรกิจ: Everyday Takeaway คือเครื่องจักรขับเคลื่อนการเติบโตแบบออร์แกนิก เพิ่ม Save Rate และ Share Rate สูงขึ้น 3.4 เท่า พร้อมต่อยอดสู่ Membership และ Knowledge API",
+          /* Slide 9 */
+          "ขอการอนุมัติ (Call to Action): สรุปแผน 4 Sprint ที่ออกแบบมาให้สั่งงานผ่าน Google Antigravity พร้อมตรวจรับงานทีละรอบ ขออนุมัติเริ่มโปรเจกต์ทันที"
+        ];
+
+        this.init();
+      }
+
+      init() {
+        this.setupAudio();
+        this.setupEventListeners();
+        this.setupTimer();
+        this.renderOverviewGrid();
+        this.updateSlideUI();
+        this.initPerceptualMap();
+        this.initBoomingEngine();
+        this.initKnowledgeGraph();
+      }
+
+      setupAudio() {
+        try {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (AudioContext) {
+            this.audioCtx = new AudioContext();
+          }
+        } catch (e) {
+          console.warn("AudioContext not supported", e);
+        }
+      }
+
+      playSfx(type = 'click') {
+        if (!this.sfxEnabled || !this.audioCtx) return;
+        if (this.audioCtx.state === 'suspended') {
+          this.audioCtx.resume();
+        }
+
+        const now = this.audioCtx.currentTime;
+        const osc = this.audioCtx.createOscillator();
+        const gain = this.audioCtx.createGain();
+
+        if (type === 'click') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(800, now);
+          osc.frequency.exponentialRampToValueAtTime(300, now + 0.08);
+          gain.gain.setValueAtTime(0.12, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+          osc.connect(gain);
+          gain.connect(this.audioCtx.destination);
+          osc.start(now);
+          osc.stop(now + 0.08);
+        } else if (type === 'boom') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(120, now);
+          osc.frequency.exponentialRampToValueAtTime(45, now + 0.5);
+          gain.gain.setValueAtTime(0.3, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+          osc.connect(gain);
+          gain.connect(this.audioCtx.destination);
+          osc.start(now);
+          osc.stop(now + 0.5);
+        }
+      }
+
+      setupEventListeners() {
+        document.getElementById('btn-next').addEventListener('click', () => this.next());
+        document.getElementById('btn-prev').addEventListener('click', () => this.prev());
+        
+        document.getElementById('btn-fullscreen').addEventListener('click', () => this.toggleFullscreen());
+        document.getElementById('btn-notes').addEventListener('click', () => this.toggleNotes());
+        document.getElementById('btn-overview').addEventListener('click', () => this.toggleOverview());
+        document.getElementById('btn-close-overview').addEventListener('click', () => this.toggleOverview(false));
+        
+        document.getElementById('btn-audio').addEventListener('click', () => {
+          this.sfxEnabled = !this.sfxEnabled;
+          const btn = document.getElementById('btn-audio');
+          btn.innerHTML = this.sfxEnabled ? '&#128266; SFX: ON' : '&#128263; SFX: OFF';
+          if (this.sfxEnabled) this.playSfx('click');
+        });
+
+        document.getElementById('btn-timer-toggle').addEventListener('click', () => {
+          this.timerRunning = !this.timerRunning;
+          document.getElementById('btn-timer-toggle').innerText = this.timerRunning ? 'PAUSE TIMER' : 'RESUME TIMER';
+        });
+
+        // Keyboard Controls
+        window.addEventListener('keydown', (e) => {
+          if (document.getElementById('overview-modal').classList.contains('open')) {
+            if (e.key === 'Escape') this.toggleOverview(false);
+            return;
+          }
+
+          if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+            e.preventDefault();
+            this.next();
+          } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+            e.preventDefault();
+            this.prev();
+          } else if (e.key === 'f' || e.key === 'F') {
+            this.toggleFullscreen();
+          } else if (e.key === 'p' || e.key === 'P') {
+            this.toggleNotes();
+          } else if (e.key === 'o' || e.key === 'O') {
+            this.toggleOverview();
+          } else if (e.key === 'b' || e.key === 'B') {
+            if (this.currentIndex === 4 && this.triggerBoom) {
+              this.triggerBoom();
+            }
+          }
+        });
+      }
+
+      setupTimer() {
+        this.timerInterval = setInterval(() => {
+          if (!this.timerRunning) return;
+          this.timerSeconds++;
+          const mins = String(Math.floor(this.timerSeconds / 60)).padStart(2, '0');
+          const secs = String(this.timerSeconds % 60).padStart(2, '0');
+          const el = document.getElementById('presenter-timer');
+          if (el) el.innerText = `${mins}:${secs}`;
+        }, 1000);
+      }
+
+      next() {
+        if (this.currentIndex < this.totalSlides - 1) {
+          this.goto(this.currentIndex + 1);
+        }
+      }
+
+      prev() {
+        if (this.currentIndex > 0) {
+          this.goto(this.currentIndex - 1);
+        }
+      }
+
+      goto(index) {
+        if (index < 0 || index >= this.totalSlides) return;
+        this.slides[this.currentIndex].classList.remove('active');
+        this.currentIndex = index;
+        this.slides[this.currentIndex].classList.add('active');
+        this.playSfx('click');
+        this.updateSlideUI();
+      }
+
+      updateSlideUI() {
+        // Update slide number
+        const numStr = String(this.currentIndex + 1).padStart(2, '0');
+        const totStr = String(this.totalSlides).padStart(2, '0');
+        document.getElementById('slide-num').innerText = `${numStr} / ${totStr}`;
+
+        // Update progress bar
+        const progressPct = ((this.currentIndex + 1) / this.totalSlides) * 100;
+        document.getElementById('bottom-bar').style.width = `${progressPct}%`;
+
+        // Update notes
+        const notes = this.executiveNotes[this.currentIndex] || "ไม่มีบันทึกสำหรับหน้านี้";
+        document.getElementById('notes-content').innerText = notes;
+
+        // Update pipeline tags highlight
+        const tags = ['tag-excavate', 'tag-decode', 'tag-retell', 'tag-connect', 'tag-apply'];
+        tags.forEach(t => document.getElementById(t).classList.remove('active'));
+
+        const currentStep = parseInt(this.slides[this.currentIndex].getAttribute('data-step') || '0', 10);
+        if (tags[currentStep]) {
+          document.getElementById(tags[currentStep]).classList.add('active');
+        }
+
+        // Special triggers per slide
+        if (this.currentIndex === 1 && this.drawPerceptualMap) {
+          this.drawPerceptualMap();
+        }
+      }
+
+      toggleFullscreen() {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(err => console.warn(err));
+        } else {
+          document.exitFullscreen().catch(err => console.warn(err));
+        }
+      }
+
+      toggleNotes() {
+        const drawer = document.getElementById('notes-drawer');
+        drawer.classList.toggle('open');
+      }
+
+      toggleOverview(forceState) {
+        const modal = document.getElementById('overview-modal');
+        if (forceState !== undefined) {
+          modal.classList.toggle('open', forceState);
+        } else {
+          modal.classList.toggle('open');
+        }
+      }
+
+      renderOverviewGrid() {
+        const container = document.getElementById('overview-container');
+        container.innerHTML = '';
+        this.slides.forEach((slide, idx) => {
+          const card = document.createElement('div');
+          card.className = `overview-card ${idx === this.currentIndex ? 'active' : ''}`;
+          
+          const title = slide.querySelector('h1')?.innerText || `Slide ${idx + 1}`;
+          const code = slide.querySelector('.code')?.innerText || `GRM-00${idx + 1}`;
+
+          card.innerHTML = `
+            <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gr-lime);">${code}</div>
+            <div style="font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--gr-paper); margin: 6px 0;">
+              ${idx + 1}. ${title}
+            </div>
+            <div style="font-size: 12px; color: var(--gr-fog);">คลิกเพื่อข้ามไปยังสไลด์นี้</div>
+          `;
+          card.addEventListener('click', () => {
+            this.goto(idx);
+            this.toggleOverview(false);
+          });
+          container.appendChild(card);
+        });
+      }
+
+      setPipelineStep(stepIdx) {
+        const stepDescriptions = [
+          "01 EXCAVATE: คัดเลือกเอกสารประวัติศาสตร์ จดหมายเหตุ และสูตรภูมิปัญญาโบราณ ระบุแหล่งที่มาและปีที่ค้นพบ 100%",
+          "02 DECODE: วิเคราะห์เอนทิตี (คน สถานที่ วัตถุ ทฤษฎี) และสร้างกราฟความสัมพันธ์ตาม Schema ของพิพิธภัณฑ์",
+          "03 RETELL: ออกแบบนิทรรศการดิจิทัลให้ดูจบใน 3–5 นาที ด้วยภาษาภาพและตัวอักษรวิทยาศาสตร์ที่เข้าใจง่าย",
+          "04 CONNECT: นำเสนอผ่าน Data Booming และ Interactive Graph ให้ผู้เข้าชมสำรวจความเชื่อมโยงข้ามพันปีได้ด้วยตนเอง",
+          "05 APPLY: ปิดท้ายทุกการเรียนรู้ด้วยการ์ด Everyday Takeaway เพื่อให้นำสิ่งที่เรียนรู้ไปปฏิบัติจริงในชีวิตประจำวัน"
+        ];
+        alert(stepDescriptions[stepIdx] || "Pipeline Selected");
+      }
+
+      approveProject() {
+        this.playSfx('boom');
+        alert("🎉 อนุมัติโครงการ GRURU MUSEUM เรียบร้อยแล้ว!\n\nระบบจะเริ่มสร้าง Web App ด้วย Next.js + Tailwind CSS และเชื่อมต่อชุดข้อมูล Knowledge Graph ตามคำสั่งใน Project Brief ทันที!");
+      }
+
+      /* ----------------------------------------------------
+         PERCEPTUAL MAP ENGINE (SLIDE 02)
+         ---------------------------------------------------- */
+      initPerceptualMap() {
+        const canvas = document.getElementById('perceptual-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+
+        const points = [
+          { name: "GRURU MUSEUM", x: 450, y: 100, color: "#D7FF3A", radius: 14, tag: "SWEET SPOT: Fun + Networked", isHero: true },
+          { name: "Wikipedia", x: 140, y: 270, color: "#8A8A9E", radius: 8, tag: "วิชาการสูง แต่เล่าแบบเส้นตรง แห้ง" },
+          { name: "TikTok / Reels", x: 480, y: 300, color: "#FF5A1F", radius: 8, tag: "สนุกสูง แต่เส้นตรง ตื้น ขาดที่มา" },
+          { name: "Academic Journals", x: 110, y: 320, color: "#8C6BFF", radius: 8, tag: "วิชาการลึกมาก แต่เข้าใจยากเฉพาะกลุ่ม" }
+        ];
+
+        this.drawPerceptualMap = () => {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          const w = canvas.width;
+          const h = canvas.height;
+          const cx = w / 2;
+          const cy = h / 2;
+
+          // Background Quadrant Tint
+          ctx.fillStyle = "rgba(215, 255, 58, 0.04)";
+          ctx.fillRect(cx, 0, cx, cy); // Top Right (Fun + Networked)
+
+          // Grid Lines
+          ctx.strokeStyle = "#2C2C3A";
+          ctx.lineWidth = 1;
+          ctx.setLineDash([4, 4]);
+
+          // X Axis
+          ctx.beginPath();
+          ctx.moveTo(40, cy);
+          ctx.lineTo(w - 40, cy);
+          ctx.stroke();
+
+          // Y Axis
+          ctx.beginPath();
+          ctx.moveTo(cx, 30);
+          ctx.lineTo(cx, h - 30);
+          ctx.stroke();
+          ctx.setLineDash([]);
+
+          // Axis Labels
+          ctx.fillStyle = "#8A8A9E";
+          ctx.font = "12px 'IBM Plex Mono', monospace";
+          ctx.textAlign = "center";
+          ctx.fillText("▲ เชื่อมแบบเครือข่าย (NETWORKED)", cx, 22);
+          ctx.fillText("▼ เล่าแบบเส้นตรง (LINEAR)", cx, h - 12);
+
+          ctx.textAlign = "left";
+          ctx.fillText("◄ วิชาการ (ACADEMIC)", 20, cy - 8);
+
+          ctx.textAlign = "right";
+          ctx.fillText("สนุก (ENGAGING) ►", w - 20, cy - 8);
+
+          // Sweet spot glow ring
+          ctx.strokeStyle = "rgba(215, 255, 58, 0.35)";
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.arc(450, 100, 24, 0, Math.PI * 2);
+          ctx.stroke();
+
+          // Draw Points
+          points.forEach(p => {
+            ctx.fillStyle = p.color;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fill();
+
+            if (p.isHero) {
+              ctx.strokeStyle = "#FFFFFF";
+              ctx.lineWidth = 2;
+              ctx.stroke();
+            }
+
+            // Text Label
+            ctx.fillStyle = p.isHero ? "#D7FF3A" : "#F2EDE3";
+            ctx.font = p.isHero ? "bold 14px 'Chakra Petch', sans-serif" : "12px 'IBM Plex Sans Thai', sans-serif";
+            ctx.textAlign = "center";
+            ctx.fillText(p.name, p.x, p.y - p.radius - 8);
+
+            // Subtag
+            ctx.fillStyle = p.isHero ? "#2EE6FF" : "#8A8A9E";
+            ctx.font = "10px 'IBM Plex Mono', monospace";
+            ctx.fillText(p.tag, p.x, p.y + p.radius + 16);
+          });
+        };
+
+        this.drawPerceptualMap();
+      }
+
+      /* ----------------------------------------------------
+         DATA BOOMING ENGINE (SLIDE 05)
+         ---------------------------------------------------- */
+      initBoomingEngine() {
+        const canvas = document.getElementById('booming-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+          canvas.width = canvas.parentElement.clientWidth;
+          canvas.height = canvas.parentElement.clientHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        let nodes = [];
+        let edges = [];
+        let boomTier = 0;
+        let animationProgress = 1;
+
+        const centralNode = {
+          id: 0,
+          label: "ความลับการหมักโบราณ (Fermentation)",
+          category: "Culture",
+          color: "#D7FF3A",
+          radius: 26,
+          x: canvas.width / 2,
+          y: canvas.height / 2,
+          targetX: canvas.width / 2,
+          targetY: canvas.height / 2,
+          tier: 0
+        };
+
+        const tier1Nodes = [
+          { id: 1, label: "แป้งสาลีป่าโบราณ (Ancient Wheat)", cat: "Nature", color: "#34E89E", angle: 0 },
+          { id: 2, label: "ยีสต์ธรรมชาติในอากาศ (Wild Yeast)", cat: "Science", color: "#2EE6FF", angle: 45 },
+          { id: 3, label: "เตาอบดินเหนียวเมโสโปเตเมีย", cat: "History", color: "#FF5A1F", angle: 90 },
+          { id: 4, label: "ไบโอเทคโนโลยีสมัยใหม่ (Biotech)", cat: "Tech", color: "#8C6BFF", angle: 135 },
+          { id: 5, label: "จุลินทรีย์ในลำไส้ (Microbiome)", cat: "Science", color: "#2EE6FF", angle: 180 },
+          { id: 6, label: "ประเพณีบิขนมปัง (Communion)", cat: "Culture", color: "#FFC233", angle: 225 },
+          { id: 7, label: "การควบคุมอุณหภูมิ (Thermal Ctrl)", cat: "Tech", color: "#8C6BFF", angle: 270 },
+          { id: 8, label: "สุนทรียะเปลือกขนมปัง (Crust Art)", cat: "Art", color: "#FF5FA2", angle: 315 }
+        ];
+
+        const tier2Nodes = [
+          { id: 101, parentId: 2, label: "Saccharomyces cerevisiae", color: "#2EE6FF" },
+          { id: 102, parentId: 2, label: "กรดแลกติก & โพรไบโอติกส์", color: "#34E89E" },
+          { id: 103, parentId: 4, label: "การเพาะเลี้ยงเนื้อเยื่อแล็บ", color: "#8C6BFF" },
+          { id: 104, parentId: 5, label: "แกนเชื่อมลำไส้กับสมอง (Gut-Brain)", color: "#FFC233" }
+        ];
+
+        const resetBoom = () => {
+          boomTier = 0;
+          nodes = [centralNode];
+          edges = [];
+          document.getElementById('boom-counter').innerText = "01 CONNECTION";
+          document.getElementById('boom-tier-label').innerText = "TIER: 0 (STANDBY) • CLICK TRIGGER BOOM";
+          renderBoom();
+        };
+
+        const triggerBoom = () => {
+          this.playSfx('boom');
+          centralNode.x = canvas.width / 2;
+          centralNode.y = canvas.height / 2;
+          centralNode.targetX = centralNode.x;
+          centralNode.targetY = centralNode.y;
+
+          if (boomTier === 0) {
+            boomTier = 1;
+            const radiusDist = Math.min(canvas.width, canvas.height) * 0.35;
+            tier1Nodes.forEach(t => {
+              const rad = (t.angle * Math.PI) / 180;
+              const node = {
+                id: t.id,
+                label: t.label,
+                color: t.color,
+                radius: 14,
+                x: centralNode.x,
+                y: centralNode.y,
+                targetX: centralNode.x + Math.cos(rad) * radiusDist,
+                targetY: centralNode.y + Math.sin(rad) * radiusDist,
+                tier: 1
+              };
+              nodes.push(node);
+              edges.push({ source: centralNode, target: node, color: t.color });
+            });
+
+            document.getElementById('boom-counter').innerText = "09 CONNECTIONS (40ms Radial)";
+            document.getElementById('boom-tier-label').innerText = "TIER: 1 (EXPLODED) • CLICK AGAIN FOR TIER 2";
+          } else if (boomTier === 1) {
+            boomTier = 2;
+            tier2Nodes.forEach((t2, idx) => {
+              const p = nodes.find(n => n.id === t2.parentId);
+              if (p) {
+                const offsetAngle = (idx * 60) * Math.PI / 180;
+                const dist2 = 80;
+                const node2 = {
+                  id: t2.id,
+                  label: t2.label,
+                  color: t2.color,
+                  radius: 10,
+                  x: p.targetX,
+                  y: p.targetY,
+                  targetX: p.targetX + Math.cos(offsetAngle) * dist2,
+                  targetY: p.targetY + Math.sin(offsetAngle) * dist2,
+                  tier: 2
+                };
+                nodes.push(node2);
+                edges.push({ source: p, target: node2, color: t2.color });
+              }
+            });
+
+            document.getElementById('boom-counter').innerText = "13 DEEP CONNECTIONS";
+            document.getElementById('boom-tier-label').innerText = "TIER: 2 (DEEP RADIAL) • FULL BOOMING ACHIEVED";
+          } else {
+            resetBoom();
+            return;
+          }
+
+          animateBoom();
+        };
+
+        this.triggerBoom = triggerBoom;
+
+        let animFrame;
+        const animateBoom = () => {
+          let moving = false;
+          nodes.forEach(n => {
+            const dx = n.targetX - n.x;
+            const dy = n.targetY - n.y;
+            if (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) {
+              n.x += dx * 0.18;
+              n.y += dy * 0.18;
+              moving = true;
+            } else {
+              n.x = n.targetX;
+              n.y = n.targetY;
+            }
+          });
+
+          renderBoom();
+          if (moving) {
+            animFrame = requestAnimationFrame(animateBoom);
+          }
+        };
+
+        const renderBoom = () => {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          // Radial Burst Lines
+          if (boomTier > 0) {
+            ctx.strokeStyle = "rgba(215, 255, 58, 0.08)";
+            ctx.lineWidth = 1;
+            for (let a = 0; a < Math.PI * 2; a += Math.PI / 12) {
+              ctx.beginPath();
+              ctx.moveTo(centralNode.x, centralNode.y);
+              ctx.lineTo(centralNode.x + Math.cos(a) * 600, centralNode.y + Math.sin(a) * 600);
+              ctx.stroke();
+            }
+          }
+
+          // Draw Edges
+          edges.forEach(e => {
+            ctx.strokeStyle = e.color || "#2C2C3A";
+            ctx.lineWidth = e.source.tier === 0 ? 2 : 1;
+            ctx.setLineDash(e.source.tier === 0 ? [] : [3, 3]);
+            ctx.beginPath();
+            ctx.moveTo(e.source.x, e.source.y);
+            ctx.lineTo(e.target.x, e.target.y);
+            ctx.stroke();
+          });
+          ctx.setLineDash([]);
+
+          // Draw Nodes
+          nodes.forEach(n => {
+            // Glow on center or tier 1
+            if (n.tier === 0) {
+              ctx.shadowColor = "rgba(215, 255, 58, 0.4)";
+              ctx.shadowBlur = 24;
+            } else {
+              ctx.shadowBlur = 0;
+            }
+
+            ctx.fillStyle = n.color;
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.shadowBlur = 0;
+            ctx.strokeStyle = "#FFFFFF";
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+
+            // Node Labels
+            ctx.fillStyle = n.tier === 0 ? "#000" : "#F2EDE3";
+            ctx.font = n.tier === 0 ? "bold 13px 'Chakra Petch', sans-serif" : "11px 'IBM Plex Sans Thai', sans-serif";
+            ctx.textAlign = "center";
+            
+            if (n.tier === 0) {
+              ctx.fillText("CORE", n.x, n.y + 4);
+              ctx.fillStyle = "#D7FF3A";
+              ctx.font = "12px 'IBM Plex Mono', monospace";
+              ctx.fillText(n.label, n.x, n.y + 42);
+            } else {
+              ctx.fillText(n.label, n.x, n.y + n.radius + 14);
+            }
+          });
+        };
+
+        document.getElementById('btn-trigger-boom').addEventListener('click', triggerBoom);
+        document.getElementById('btn-reset-boom').addEventListener('click', resetBoom);
+        canvas.addEventListener('click', triggerBoom);
+
+        resetBoom();
+      }
+
+      /* ----------------------------------------------------
+         KNOWLEDGE GRAPH SIMULATOR (SLIDE 06)
+         ---------------------------------------------------- */
+      initKnowledgeGraph() {
+        const canvas = document.getElementById('kg-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+
+        function resizeKg() {
+          canvas.width = canvas.parentElement.clientWidth;
+          canvas.height = canvas.parentElement.clientHeight;
+        }
+        resizeKg();
+        window.addEventListener('resize', resizeKg);
+
+        const fullNodes = [
+          { id: "GRM-1872-SCI-014", title: "การหมักยีสต์โบราณ", cat: "Science", era: "2500 BCE", color: "#2EE6FF", shape: "circle", x: 220, y: 160, r: 20, summary: "การค้นพบจุลินทรีย์ในไหหมักแป้งสมัยอียิปต์โบราณ ต้นกำเนิดการแปรรูปอาหารและไบโอเทคโนโลยีสมัยใหม่", takeaway: "การทำขนมปัง Sourdough ตามธรรมชาติช่วยย่อยกลูเตนและเพิ่มสมดุลจุลินทรีย์ในลำไส้" },
+          { id: "GRM-1200-HIS-002", title: "บันทึกกระดาษปาปิรุส", cat: "History", era: "1200 BCE", color: "#FF5A1F", shape: "hexagon", x: 140, y: 320, r: 18, summary: "ระบบจดบันทึกสูตรการแพทย์และคณิตศาสตร์ยุคแรกของมนุษยชาติที่ยังหลงเหลือหลักฐาน", takeaway: "การจดบันทึกช่วยลดความผิดพลาดในการส่งต่อความรู้ระหว่างรุ่นคน" },
+          { id: "GRM-1953-TEC-008", title: "โครงสร้างเกลียวคู่ DNA", cat: "Tech", era: "1953 CE", color: "#8C6BFF", shape: "square", x: 380, y: 130, r: 24, summary: "การถอดรหัสพันธุกรรมที่เปลี่ยนโฉมหน้าเวชศาสตร์และเกษตรกรรมแม่นยำในศตวรรษที่ 21", takeaway: "อาหารที่เราบริโภคทุกวันนี้คือผลลัพธ์ของการคัดเลือกสายพันธุ์ข้ามหลายร้อยปี" },
+          { id: "GRM-0800-CUL-011", title: "ปรัชญาเต๋าและหยินหยาง", cat: "Culture", era: "800 BCE", color: "#FFC233", shape: "triangle", x: 420, y: 280, r: 16, summary: "แนวคิดความสมดุลของมนุษย์กับธรรมชาติ ซึ่งเป็นรากฐานของแพทย์แผนตะวันออกและการหมุนเวียนพลังงาน", takeaway: "การปรับสมดุลการทำงานและการพักผ่อน (Work-Life Harmony) สอดคล้องกับจังหวะธรรมชาติ" },
+          { id: "GRM-0300-NAT-005", title: "ระบบนิเวศน์ป่าดงดิบ", cat: "Nature", era: "ยุคโบราณ", color: "#34E89E", shape: "diamond", x: 260, y: 360, r: 20, summary: "เครือข่าย Mycelium ใต้ดินที่ต้นไม้ใช้แลกเปลี่ยนสารอาหารและเตือนภัยระหว่างกัน", takeaway: "เครือข่ายความร่วมมือสร้างความอยู่รอดได้ดีกว่าการแข่งขันแบบโดดเดี่ยว" },
+          { id: "GRM-1490-ART-003", title: "สัดส่วนทองคำวิทรูเวียน", cat: "Art", era: "1490 CE", color: "#FF5FA2", shape: "ring", x: 520, y: 200, r: 18, summary: "ผลงานดา วินชี ที่ผสานกายวิภาคศาสตร์ เรขาคณิต และศิลปะเข้าเป็นหนึ่งเดียว", takeaway: "การออกแบบสิ่งของเครื่องใช้โดยอิงสัดส่วนสรีระมนุษย์ช่วยลดอาการออฟฟิศซินโดรม" }
+        ];
+
+        let selectedNode = fullNodes[0];
+        let filterCat = "ALL";
+
+        this.filterCategory = (cat) => {
+          filterCat = cat;
+          renderKg();
+        };
+
+        this.sampleNewNode = () => {
+          const nextIdx = (fullNodes.indexOf(selectedNode) + 1) % fullNodes.length;
+          this.selectKgNode(fullNodes[nextIdx]);
+        };
+
+        this.selectKgNode = (node) => {
+          selectedNode = node;
+          document.getElementById('inspect-id').innerText = node.id;
+          document.getElementById('inspect-title').innerText = node.title;
+          document.getElementById('inspect-category').innerText = node.cat.toUpperCase();
+          document.getElementById('inspect-category').style.color = node.color;
+          document.getElementById('inspect-era').innerText = `ERA: ${node.era}`;
+          document.getElementById('inspect-summary').innerText = node.summary;
+          document.getElementById('inspect-takeaway').innerText = node.takeaway;
+          this.playSfx('click');
+          renderKg();
+        };
+
+        const renderKg = () => {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          // Draw Connections
+          for (let i = 0; i < fullNodes.length; i++) {
+            for (let j = i + 1; j < fullNodes.length; j++) {
+              const a = fullNodes[i];
+              const b = fullNodes[j];
+              const isSelectedPath = (a === selectedNode || b === selectedNode);
+
+              ctx.strokeStyle = isSelectedPath ? "rgba(215, 255, 58, 0.7)" : "rgba(44, 44, 58, 0.5)";
+              ctx.lineWidth = isSelectedPath ? 2 : 1;
+              if (i % 2 === 0) {
+                ctx.setLineDash([4, 4]); // derived
+              } else {
+                ctx.setLineDash([]);
+              }
+
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.stroke();
+            }
+          }
+          ctx.setLineDash([]);
+
+          // Draw Nodes
+          fullNodes.forEach(n => {
+            const isMatch = filterCat === 'ALL' || n.cat.toLowerCase().includes(filterCat.toLowerCase());
+            const opacity = isMatch ? 1 : 0.2;
+            const isSel = (n === selectedNode);
+
+            ctx.globalAlpha = opacity;
+
+            if (isSel) {
+              ctx.strokeStyle = "rgba(215, 255, 58, 0.6)";
+              ctx.lineWidth = 3;
+              ctx.beginPath();
+              ctx.arc(n.x, n.y, n.r + 8, 0, Math.PI * 2);
+              ctx.stroke();
+            }
+
+            ctx.fillStyle = n.color;
+
+            // Shape rendering based on brief
+            if (n.shape === 'circle') {
+              ctx.beginPath();
+              ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+              ctx.fill();
+            } else if (n.shape === 'square') {
+              ctx.fillRect(n.x - n.r, n.y - n.r, n.r * 2, n.r * 2);
+            } else if (n.shape === 'triangle') {
+              ctx.beginPath();
+              ctx.moveTo(n.x, n.y - n.r);
+              ctx.lineTo(n.x + n.r, n.y + n.r);
+              ctx.lineTo(n.x - n.r, n.y + n.r);
+              ctx.closePath();
+              ctx.fill();
+            } else if (n.shape === 'diamond') {
+              ctx.beginPath();
+              ctx.moveTo(n.x, n.y - n.r);
+              ctx.lineTo(n.x + n.r, n.y);
+              ctx.lineTo(n.x, n.y + n.r);
+              ctx.lineTo(n.x - n.r, n.y);
+              ctx.closePath();
+              ctx.fill();
+            } else if (n.shape === 'ring') {
+              ctx.beginPath();
+              ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+              ctx.stroke();
+              ctx.fillStyle = "#17171F";
+              ctx.fill();
+            } else { // hexagon
+              ctx.beginPath();
+              for (let a = 0; a < 6; a++) {
+                const angle = a * Math.PI / 3;
+                const px = n.x + n.r * Math.cos(angle);
+                const py = n.y + n.r * Math.sin(angle);
+                if (a === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+              }
+              ctx.closePath();
+              ctx.fill();
+            }
+
+            ctx.fillStyle = isSel ? "#D7FF3A" : "#F2EDE3";
+            ctx.font = isSel ? "bold 13px 'Chakra Petch', sans-serif" : "11px 'IBM Plex Sans Thai', sans-serif";
+            ctx.textAlign = "center";
+            ctx.fillText(n.title, n.x, n.y + n.r + 14);
+
+            ctx.globalAlpha = 1;
+          });
+        };
+
+        canvas.addEventListener('click', (e) => {
+          const rect = canvas.getBoundingClientRect();
+          const mx = e.clientX - rect.left;
+          const my = e.clientY - rect.top;
+
+          fullNodes.forEach(n => {
+            const dist = Math.hypot(n.x - mx, n.y - my);
+            if (dist < n.r + 10) {
+              this.selectKgNode(n);
+            }
+          });
+        });
+
+        renderKg();
+      }
+    }
+
+    // Initialize presentation on window load
+    window.addEventListener('DOMContentLoaded', () => {
+      window.deck = new PresentationDeck();
+    });
+  </script>
+</body>
+</html>
